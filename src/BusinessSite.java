@@ -1,16 +1,17 @@
 
-public class BusinessSite {
+public class BusinessSite extends Site{
 
 	private int _lastReading;
-	private Reading[] _readings = new Reading[1000];
 	private static final double START_RATE = 0.09;
 	private static final double END_RATE = 0.05;
 	private static final int END_AMOUNT = 1000;
 
+	@Override
 	public void addReading(Reading newReading) {
 		_readings[++_lastReading] = newReading;
 	}
 
+	@Override
 	public Dollars charge() {
 		int usage = _readings[_lastReading].amount() - _readings[_lastReading -1].amount();
 		return charge(usage);
@@ -34,5 +35,4 @@ public class BusinessSite {
 		result = result.plus(base);
 		return result;
 	}
-
 }

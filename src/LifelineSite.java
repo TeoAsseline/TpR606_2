@@ -1,9 +1,7 @@
 
-public class LifelineSite {
+public class LifelineSite extends Site {
 
-	private Reading[] _readings = new Reading[1000];
-	private static final double TAX_RATE = 0.05;
-
+	@Override
 	public void addReading(Reading newReading) {
 		Reading[] newArray = new Reading[_readings.length + 1];
 		System.arraycopy(_readings, 0, newArray, 1, _readings.length);
@@ -11,6 +9,7 @@ public class LifelineSite {
 		_readings = newArray;
 	}
 
+	@Override
 	public Dollars charge() {
 		int usage = _readings[0].amount() - _readings[1].amount();
 		return charge(usage);
